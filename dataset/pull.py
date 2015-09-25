@@ -1,4 +1,3 @@
-#
 #  Copyright (c) 2015, Facebook, Inc.
 #  All rights reserved.
 #
@@ -20,10 +19,11 @@ words_dict = set([l.split()[0]
                   for l in open(sys.argv[2])])
 
 for l in sys.stdin:
-    splits = l.strip().split("\t")
-    if len(splits) != 4:
-        continue
-    title_parse, article_parse, title, article = l.strip().split("\t")
+    title_parse = l
+    article_parse = l
+    title = l
+    article = l
+#    title_parse, article_parse, title, article = l.strip().split("\t")
     if sys.argv[1] == "src":
         print(article)
     elif sys.argv[1] == "trg":

@@ -95,6 +95,7 @@ function nnlm:validation(valid_data)
    valid_data:reset()
    while not valid_data:is_done() do
       local input, target = valid_data:next_batch(offset)
+      print(input)
       local out = self.mlp:forward(input)
       local err = self.criterion:forward(out, target) * target:size(1)
 
