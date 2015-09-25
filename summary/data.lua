@@ -68,9 +68,9 @@ end
 function data:next_batch(max_size)
    local diff = self.bucket_size - self.pos
 
-   if self.done_bucket or diff == 0 or diff == 1 then
+   while self.done_bucket or diff == 0 or diff <= 1 do
       self:load_next_bucket()
-      --diff = self.bucket_size - self.pos
+      diff = self.bucket_size - self.pos
    end
    local offset
    if self.pos + max_size > self.bucket_size then

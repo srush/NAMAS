@@ -95,7 +95,6 @@ function nnlm:validation(valid_data)
    valid_data:reset()
    while not valid_data:is_done() do
       local input, target = valid_data:next_batch(offset)
-      print(input)
       local out = self.mlp:forward(input)
       local err = self.criterion:forward(out, target) * target:size(1)
 
@@ -124,8 +123,6 @@ end
 function nnlm:renorm_tables()
     -- Renormalize the lookup tables.
     if self.lookup ~= nil then
-        print(self.lookup.weight:size())
-        print(self.lookup.weight:type())
         self:renorm(self.lookup.weight, 1)
     end
     if self.encoder_model.lookup ~= nil then
